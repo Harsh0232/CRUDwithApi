@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Book>
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-primary">Books List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" asp-controller="MarketPlace" class="btn btn-primary">Add Book</a>
+    </div>
+</div>
+<div class="p-4 border rounded">
+    @if (Model.Any())
+    {
+
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th style="display:none;">
+                    ID
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Price
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="display:none;">
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.Author
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        <div class="text-center">
+                            <form asp-action="Delete" asp-route-id="@item.Id">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info" style="cursor:pointer">
+                                    Edit
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info" style="cursor:pointer">
+                                    Details
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" style="cursor:pointer">
+                                    Delete
+                                </a>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+</div>
